@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Get a free shipping quote from Qaher Logistics. Fast estimates for air, sea, and land freight.">
+  <title>Qaher Logistics — Get Quote</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg sticky-top"><div class="container"><a class="navbar-brand d-flex align-items-center" href="index.html"><img src="LOGO/IMG_20251121_182909 (1).jpg" alt="Qaher Logistics Logo" style="height: 70px;"></a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu"> <span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navmenu"><ul class="navbar-nav ms-auto"><li class="nav-item"><a class="nav-link" href="index.html">Home</a></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Services</a><ul class="dropdown-menu"><li><a class="dropdown-item" href="service-air.html">✈️ Air Freight</a></li><li><a class="dropdown-item" href="service-sea.html">🚢 Sea Freight</a></li><li><a class="dropdown-item" href="service-land.html">🚚 Land Freight</a></li></ul></li><li class="nav-item"><a class="nav-link" href="tracking.html">Tracking</a></li><li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li><li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li><li class="nav-item"><a class="nav-link" href="about.html">About</a></li><li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li></ul></div></div></nav>
+
+  <!-- Hero -->
+  <section class="hero" style="position:relative;background:linear-gradient(135deg, #3B82F6 0%, #10B981 100%);background-size:400% 400%;animation:gradientShift 8s ease infinite">
+    <div style="position:absolute;top:18%;left:10%;font-size:3.5rem;animation:pulse 2.1s ease-in-out infinite;pointer-events:none;z-index:1">💰</div>
+    <div style="position:absolute;bottom:14%;right:10%;font-size:3.2rem;animation:float 3.1s ease-in-out infinite;pointer-events:none;z-index:1">📊</div>
+    <div style="position:absolute;top:42%;right:12%;font-size:3rem;animation:bounce 2.5s ease-in-out infinite;pointer-events:none;z-index:1">✅</div>
+    <div class="container" style="position:relative;z-index:2">
+      <h1 class="mb-3" style="animation:slideUp .8s cubic-bezier(.34,.1,.68,1)">Get Your Instant Quote</h1>
+      <p class="lead" style="animation:slideUp .9s cubic-bezier(.34,.1,.68,1) .15s both">Fill in your shipment details for an accurate estimate in seconds.</p>
+    </div>
+  </section>
+
+  <main class="section-light py-5">
+    <div class="container">
+      <div class="row g-4">
+        <!-- Quote Form -->
+        <div class="col-lg-8">
+          <div class="card-vibrant p-5 rounded-4">
+            <form id="quoteForm" onsubmit="calculateQuote(event)">
+              <!-- Service Selection -->
+              <h5 class="mb-4">Choose Your Service</h5>
+              <div class="row g-3 mb-5">
+                <div class="col-md-4">
+                  <div style="background:linear-gradient(135deg, #3B82F6, #2563EB); padding:24px; border-radius:12px; color:white; cursor:pointer; text-align:center; transition:all 0.3s" onclick="document.getElementById('serviceSel').value='Air Freight';this.style.transform='scale(1.05)'">
+                    <i class="bi bi-airplane-fill" style="font-size:2rem;display:block;margin-bottom:12px"></i>
+                    <div style="font-weight:700">Air Freight</div>
+                    <div style="font-size:0.85rem;opacity:0.9">1-2 days</div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div style="background:linear-gradient(135deg, #06B6D4, #0891B2); padding:24px; border-radius:12px; color:white; cursor:pointer; text-align:center; transition:all 0.3s" onclick="document.getElementById('serviceSel').value='Sea Freight';this.style.transform='scale(1.05)'">
+                    <i class="bi bi-ship" style="font-size:2rem;display:block;margin-bottom:12px"></i>
+                    <div style="font-weight:700">Sea Freight</div>
+                    <div style="font-size:0.85rem;opacity:0.9">10-30 days</div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div style="background:linear-gradient(135deg, #F59E0B, #D97706); padding:24px; border-radius:12px; color:white; cursor:pointer; text-align:center; transition:all 0.3s" onclick="document.getElementById('serviceSel').value='Land Freight';this.style.transform='scale(1.05)'">
+                    <i class="bi bi-truck" style="font-size:2rem;display:block;margin-bottom:12px"></i>
+                    <div style="font-weight:700">Land Freight</div>
+                    <div style="font-size:0.85rem;opacity:0.9">3-7 days</div>
+                  </div>
+                </div>
+              </div>
+              <select class="form-select d-none" id="serviceSel" required><option value="Air Freight">Air Freight</option><option value="Sea Freight" selected>Sea Freight</option><option value="Land Freight">Land Freight</option></select>
+
+              <!-- Origin & Destination -->
+              <h6 class="mb-3 mt-4" style="color:var(--blue);font-weight:700">📍 Origin & Destination</h6>
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <label class="form-label" style="color:var(--slate);font-weight:600">Origin City</label>
+                  <input class="form-control" id="origin" placeholder="e.g., Shanghai" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" style="color:var(--slate);font-weight:600">Destination City</label>
+                  <input class="form-control" id="destination" placeholder="e.g., Lagos" required>
+                </div>
+              </div>
+
+              <!-- Cargo Details -->
+              <h6 class="mb-3" style="color:var(--green);font-weight:700">📦 Cargo Details</h6>
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <label class="form-label" style="color:var(--slate);font-weight:600">Cargo Type</label>
+                  <select class="form-select" id="cargoType" required>
+                    <option value="">Select type...</option>
+                    <option>Electronics</option>
+                    <option>Textiles</option>
+                    <option>Food & Beverages</option>
+                    <option>Machinery</option>
+                    <option>Raw Materials</option>
+                    <option>Hazardous</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" style="color:var(--slate);font-weight:600">Special Handling</label>
+                  <select class="form-select" id="handling">
+                    <option>None</option>
+                    <option>Fragile (+$50)</option>
+                    <option>Hazmat (+$100)</option>
+                    <option>Temperature Controlled (+$75)</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Dimensions & Weight -->
+              <h6 class="mb-3" style="color:var(--orange);font-weight:700">📐 Dimensions & Weight</h6>
+              <div class="row g-3 mb-4">
+                <div class="col-md-3">
+                  <label class="form-label" style="color:var(--slate);font-weight:600">Length (cm)</label>
+                  <input type="number" class="form-control" id="length" placeholder="L">
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label" style="color:var(--slate);font-weight:600">Width (cm)</label>
+                  <input type="number" class="form-control" id="width" placeholder="W">
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label" style="color:var(--slate);font-weight:600">Height (cm)</label>
+                  <input type="number" class="form-control" id="height" placeholder="H">
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label" style="color:var(--slate);font-weight:600">Weight (kg)</label>
+                  <input type="number" class="form-control" id="weight" value="100" min="1" required>
+                </div>
+              </div>
+
+              <!-- Dates -->
+              <h6 class="mb-3" style="color:var(--purple);font-weight:700">📅 Timeline</h6>
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <label class="form-label" style="color:var(--slate);font-weight:600">Pickup Date</label>
+                  <input type="date" class="form-control" id="pickupDate">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" style="color:var(--slate);font-weight:600">Desired Delivery</label>
+                  <input type="date" class="form-control" id="deliveryDate">
+                </div>
+              </div>
+
+              <!-- Submit Buttons -->
+              <div class="d-grid gap-2 gap-md-3 mt-4">
+                <button class="btn btn-lg btn-primary cta-primary rounded-pill" type="submit"><i class="bi bi-calculator me-2"></i>Calculate Quote</button>
+                <button class="btn btn-outline-light rounded-pill" type="reset" onclick="resetQuote()"><i class="bi bi-arrow-clockwise me-2"></i>Clear Form</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Quote Breakdown -->
+        <div class="col-lg-4">
+          <div class="card-vibrant p-5 rounded-4 sticky-top" style="top:80px">
+            <h5 class="mb-4">💰 Estimate Breakdown</h5>
+            
+            <div id="quoteResult">
+              <div class="mb-3 pb-3 border-bottom" style="border-color:var(--light-gray)">
+                <div class="text-muted small">Service Type</div>
+                <div id="qService" style="color:var(--blue);font-weight:700;font-size:1.1rem">Sea Freight</div>
+              </div>
+
+              <div class="mb-3 pb-3 border-bottom" style="border-color:var(--light-gray)">
+                <div class="text-muted small">Total Weight</div>
+                <div id="qWeight" style="color:var(--blue);font-weight:700">100 kg</div>
+              </div>
+
+              <div class="mb-4 pb-4 border-bottom" style="border-color:var(--light-gray)">
+                <div class="text-muted small">Estimated Delivery</div>
+                <div id="qETA" style="color:var(--green);font-weight:700">7-14 days</div>
+              </div>
+
+              <!-- Cost Breakdown -->
+              <h6 class="mb-3" style="color:var(--slate)">Cost Breakdown</h6>
+              <div class="mb-2">
+                <div class="d-flex justify-content-between small mb-1">
+                  <span class="text-muted">Base Rate</span>
+                  <span id="qBase" style="font-weight:600">$300</span>
+                </div>
+              </div>
+              <div class="mb-2">
+                <div class="d-flex justify-content-between small mb-1">
+                  <span class="text-muted">Handling Fee</span>
+                  <span id="qHandling" style="font-weight:600">$50</span>
+                </div>
+              </div>
+              <div class="mb-4">
+                <div class="d-flex justify-content-between small mb-1">
+                  <span class="text-muted">Taxes & Fees</span>
+                  <span id="qTaxes" style="font-weight:600">$50</span>
+                </div>
+              </div>
+
+              <!-- Total -->
+              <div class="p-4 rounded-3" style="background:linear-gradient(135deg, #3B82F6, #10B981);color:white;text-align:center">
+                <div class="small mb-2">Total Estimate</div>
+                <div id="qCost" style="font-size:2rem;font-weight:800">$400.00</div>
+                <div class="small mt-2" style="opacity:0.9">Valid for 30 days</div>
+              </div>
+            </div>
+
+            <!-- Info Alert -->
+            <div class="alert mt-4 mb-0" style="background:rgba(59,130,246,0.1);border-color:var(--blue);border-left:4px solid var(--blue);color:var(--slate)">
+              <small><i class="bi bi-info-circle me-2"></i>This is an estimate based on provided details. Final pricing may vary.</small>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="d-grid gap-2 mt-4">
+            <button class="btn btn-primary cta-primary rounded-pill" onclick="requestFullQuote()"><i class="bi bi-send me-2"></i>Request Full Quote</button>
+            <button class="btn btn-outline-light rounded-pill" onclick="downloadEstimate()"><i class="bi bi-download me-2"></i>Download PDF</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-md-4"><h5 style="color:#000">Qaher Logistics</h5><p class="small" style="color:#000">Moving Your World, Seamlessly.</p></div>
+        <div class="col-md-2"><h6 style="color:#000">Company</h6><ul class="list-unstyled small"><li><a href="index.html" style="color:#000">Home</a></li><li><a href="services.html" style="color:#000">Services</a></li><li><a href="about.html" style="color:#000">About</a></li><li><a href="contact.html" style="color:#000">Contact</a></li></ul></div>
+        <div class="col-md-2"><h6 style="color:#000">Services</h6><ul class="list-unstyled small"><li><a href="tracking.html" style="color:#000">Tracking</a></li><li><a href="quote.html" style="color:#000">Get Quote</a></li><li><a href="pricing.html" style="color:#000">Pricing</a></li><li><a href="faq.html" style="color:#000">FAQ</a></li></ul></div>
+        <div class="col-md-2"><h6 style="color:#000">Legal</h6><ul class="list-unstyled small"><li><a href="privacy-policy.html" style="color:#000">Privacy Policy</a></li><li><a href="terms-and-conditions.html" style="color:#000">Terms & Conditions</a></li></ul></div>
+        <div class="col-md-2 text-end"><small style="color:#000">© 2025 Qaher Logistics. All rights reserved.</small></div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="topBtn" title="Back to top" onclick="scrollToTop()"><i class="bi bi-chevron-up"></i></button>
+  <button id="liveChatBtn" title="Live chat" onclick="openChat()"><i class="bi bi-chat-dots" style="font-size:1.1rem;color:#fff"></i></button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>

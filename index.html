@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Qaher Logistics - Global freight services across land, sea, and air. Fast, reliable, and trusted logistics solutions.">
+  <meta name="theme-color" content="#3B82F6">
+  <title>Qaher Logistics — Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html"><img src="LOGO/IMG_20251121_182909 (1).jpg" alt="Qaher Logistics Logo" style="height: 70px;"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu"> <span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Services</a><ul class="dropdown-menu"><li><a class="dropdown-item" href="service-air.html">✈️ Air Freight</a></li><li><a class="dropdown-item" href="service-sea.html">🚢 Sea Freight</a></li><li><a class="dropdown-item" href="service-land.html">🚚 Land Freight</a></li></ul></li>
+          <li class="nav-item"><a class="nav-link" href="tracking.html">Tracking</a></li>
+          <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+          <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item ms-2"><a class="btn btn-sm btn-primary cta-primary" href="quote.html">Get Quote</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" style="position:relative">
+      <div style="position:absolute;top:10%;left:15%;width:60px;height:60px;border:3px solid rgba(255,255,255,0.3);border-radius:50%;animation:globe-spin 20s linear infinite;pointer-events:none;z-index:1;box-shadow:inset 0 0 20px rgba(255,255,255,0.2),0 0 30px rgba(255,255,255,0.1)"></div>
+      <div style="position:absolute;top:20%;right:12%;font-size:3rem;animation:floatRotate 4s ease-in-out infinite;pointer-events:none;z-index:1;filter:drop-shadow(0 0 15px rgba(0,217,255,0.4))">🌐</div>
+      <div style="position:absolute;bottom:15%;left:10%;font-size:2.5rem;animation:bounce 2s ease-in-out infinite;pointer-events:none;z-index:1;filter:drop-shadow(0 0 10px rgba(245,158,11,0.4))">📍</div>
+      <div class="container" style="position:relative;z-index:2">
+        <div class="row align-items-center">
+          <div class="col-lg-7 fade-in">
+            <h1 class="mb-4" style="animation:slideUp .8s cubic-bezier(.34,.1,.68,1)">Global Logistics, Delivered with Precision</h1>
+            <p class="lead mb-4" style="font-size:1.2rem;line-height:1.6;animation:slideUp .9s cubic-bezier(.34,.1,.68,1) .15s both">Connecting businesses worldwide with speed, technology, and trust. Land • Sea • Air freight services you can rely on.</p>
+            <div class="d-flex gap-3 mt-4 flex-wrap" style="animation:slideUp 1s cubic-bezier(.34,.1,.68,1) .3s both">
+              <a href="quote.html" class="btn btn-lg btn-primary cta-primary rounded-pill px-5"><i class="bi bi-lightning-charge me-2"></i>Get a Quote</a>
+              <a href="tracking.html" class="btn btn-lg btn-outline-light rounded-pill px-5"><i class="bi bi-geo-alt me-2"></i>Track Shipment</a>
+            </div>
+          </div>
+          <div class="col-lg-5 mt-4 mt-lg-0 fade-in" style="animation-delay:0.15s">
+            <div class="row g-2 g-sm-3 text-center text-white">
+              <div class="col-6 col-sm-6"><div style="background:linear-gradient(135deg,#3B82F6,#06B6D4);padding:20px 15px;border-radius:10px;box-shadow:0 8px 20px rgba(59,130,246,0.25);transition:all .3s ease;position:relative;overflow:hidden" onmouseover="this.style.transform='scale(1.08) translateY(-8px)';this.style.boxShadow='0 12px 35px rgba(59,130,246,0.4)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 8px 20px rgba(59,130,246,0.25)'"><div class="counter" style="font-size:1.8rem;color:white" data-target="500">0</div><div style="font-size:0.8rem;opacity:0.9">Countries</div></div></div>
+              <div class="col-6 col-sm-6"><div style="background:linear-gradient(135deg,#10B981,#059669);padding:20px 15px;border-radius:10px;box-shadow:0 8px 20px rgba(16,185,129,0.25);transition:all .3s ease;position:relative;overflow:hidden" onmouseover="this.style.transform='scale(1.08) translateY(-8px)';this.style.boxShadow='0 12px 35px rgba(16,185,129,0.4)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 8px 20px rgba(16,185,129,0.25)'"><div class="counter" style="font-size:1.8rem;color:white" data-target="10000">0</div><div style="font-size:0.8rem;opacity:0.9">Shipments/Mo</div></div></div>
+              <div class="col-6 col-sm-6"><div style="background:linear-gradient(135deg,#F59E0B,#D97706);padding:20px 15px;border-radius:10px;box-shadow:0 8px 20px rgba(245,158,11,0.25);transition:all .3s ease;position:relative;overflow:hidden" onmouseover="this.style.transform='scale(1.08) translateY(-8px)';this.style.boxShadow='0 12px 35px rgba(245,158,11,0.4)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 8px 20px rgba(245,158,11,0.25)'"><div class="counter" style="font-size:1.8rem;color:white" data-target="24">0</div><div style="font-size:0.8rem;opacity:0.9">Hour Support</div></div></div>
+              <div class="col-6 col-sm-6"><div style="background:linear-gradient(135deg,#A855F7,#7C3AED);padding:20px 15px;border-radius:10px;box-shadow:0 8px 20px rgba(168,85,247,0.25);transition:all .3s ease;position:relative;overflow:hidden" onmouseover="this.style.transform='scale(1.08) translateY(-8px)';this.style.boxShadow='0 12px 35px rgba(168,85,247,0.4)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 8px 20px rgba(168,85,247,0.25)'"><div style="font-size:1.8rem;color:white;font-weight:800">95%</div><div style="font-size:0.8rem;opacity:0.9">On-Time</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="section-light-blue py-5">
+      <div class="container">
+        <h2 class="text-center mb-5" style="animation:slideDown .6s ease-out;animation-fill-mode:both">Our Transport Modes</h2>
+        <div class="row g-4">
+          <div class="col-md-4" style="animation:slideUp .6s ease-out .1s both">
+            <div class="service-card" style="background:linear-gradient(135deg,#3B82F6,#2563EB)">
+              <div class="service-card-header">
+                <i class="bi bi-airplane-fill" style="animation:plane-fly 2s ease-in-out infinite"></i>
+                <h5 class="mt-2">Air Freight</h5>
+              </div>
+              <div class="service-card-body">
+                <p class="mb-3">Fast international delivery for time-sensitive cargo.</p>
+                <a href="services.html#air" class="btn btn-sm btn-primary cta-primary w-100">Learn More</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4" style="animation:slideUp .6s ease-out .2s both">
+            <div class="service-card" style="background:linear-gradient(135deg,#06B6D4,#0891B2)">
+              <div class="service-card-header">
+                <i class="bi bi-ship" style="animation:ship-wave 2s ease-in-out infinite"></i>
+                <h5 class="mt-2">Sea Freight</h5>
+              </div>
+              <div class="service-card-body">
+                <p class="mb-3">Cost-effective ocean logistics for bulk shipments.</p>
+                <a href="services.html#sea" class="btn btn-sm btn-primary cta-primary w-100">Learn More</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4" style="animation:slideUp .6s ease-out .3s both">
+            <div class="service-card" style="background:linear-gradient(135deg,#F59E0B,#D97706)">
+              <div class="service-card-header">
+                <i class="bi bi-truck" style="animation:truck-roll 2s ease-in-out infinite"></i>
+                <h5 class="mt-2">Land Freight</h5>
+              </div>
+              <div class="service-card-body">
+                <p class="mb-3">Reliable ground transport across continents.</p>
+                <a href="services.html#land" class="btn btn-sm btn-primary cta-primary w-100">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section-light py-5">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2>Why Choose Qaher Logistics?</h2>
+          <p class="text-muted">Six reasons to trust the industry leader</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4 fade-in">
+            <div class="feature-card card-blue">
+              <i class="bi bi-clock-history icon-blue"></i>
+              <h5>Real-time Tracking</h5>
+              <p class="text-muted small">Track every shipment in real-time with live updates</p>
+            </div>
+          </div>
+          <div class="col-md-4 fade-in" style="animation-delay:0.1s">
+            <div class="feature-card card-green">
+              <i class="bi bi-globe2 icon-green"></i>
+              <h5>Global Network</h5>
+              <p class="text-muted small">Presence in 500+ countries worldwide</p>
+            </div>
+          </div>
+          <div class="col-md-4 fade-in" style="animation-delay:0.2s">
+            <div class="feature-card card-orange">
+              <i class="bi bi-headset icon-orange"></i>
+              <h5>24/7 Support</h5>
+              <p class="text-muted small">Round-the-clock customer service</p>
+            </div>
+          </div>
+          <div class="col-md-4 fade-in" style="animation-delay:0.3s">
+            <div class="feature-card card-purple">
+              <i class="bi bi-file-earmark-check icon-purple"></i>
+              <h5>Customs Clearance</h5>
+              <p class="text-muted small">Expert compliance and clearance handling</p>
+            </div>
+          </div>
+          <div class="col-md-4 fade-in" style="animation-delay:0.4s">
+            <div class="feature-card card-pink">
+              <i class="bi bi-shield-check icon-pink"></i>
+              <h5>Insurance Protection</h5>
+              <p class="text-muted small">Comprehensive cargo insurance coverage</p>
+            </div>
+          </div>
+          <div class="col-md-4 fade-in" style="animation-delay:0.5s">
+            <div class="feature-card card-cyan">
+              <i class="bi bi-lightning-fill icon-cyan"></i>
+              <h5>Fast Delivery</h5>
+              <p class="text-muted small">Industry-leading delivery times</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section-light-gray py-5">
+      <div class="container">
+        <h2 class="text-center mb-5" style="animation:slideDown .6s ease-out;animation-fill-mode:both">Trusted by Industry Leaders</h2>
+        <div class="row g-4">
+          <div class="col-md-4" style="animation:slideUp .6s ease-out .1s both">
+            <div class="testimonial-card border-blue">
+              <div class="d-flex gap-1 mb-3">
+                <i class="bi bi-star-fill icon-blue"></i>
+                <i class="bi bi-star-fill icon-blue"></i>
+                <i class="bi bi-star-fill icon-blue"></i>
+                <i class="bi bi-star-fill icon-blue"></i>
+                <i class="bi bi-star-fill icon-blue"></i>
+              </div>
+              <p class="text-muted mb-3">"Qaher Logistics has transformed our supply chain. Their speed and reliability are unmatched."</p>
+              <strong>Sarah J.</strong>
+              <div class="small text-muted">Tech Manufacturing</div>
+            </div>
+          </div>
+          <div class="col-md-4" style="animation:slideUp .6s ease-out .2s both">
+            <div class="testimonial-card border-green">
+              <div class="d-flex gap-1 mb-3">
+                <i class="bi bi-star-fill icon-green"></i>
+                <i class="bi bi-star-fill icon-green"></i>
+                <i class="bi bi-star-fill icon-green"></i>
+                <i class="bi bi-star-fill icon-green"></i>
+                <i class="bi bi-star-fill icon-green"></i>
+              </div>
+              <p class="text-muted mb-3">"Competitive pricing with premium service. Exactly what we were looking for."</p>
+              <strong>Michael T.</strong>
+              <div class="small text-muted">Import/Export</div>
+            </div>
+          </div>
+          <div class="col-md-4" style="animation:slideUp .6s ease-out .3s both">
+            <div class="testimonial-card border-orange">
+              <div class="d-flex gap-1 mb-3">
+                <i class="bi bi-star-fill icon-orange"></i>
+                <i class="bi bi-star-fill icon-orange"></i>
+                <i class="bi bi-star-fill icon-orange"></i>
+                <i class="bi bi-star-fill icon-orange"></i>
+                <i class="bi bi-star-fill icon-orange"></i>
+              </div>
+              <p class="text-muted mb-3">"Their 24/7 support team is phenomenal. Every shipment arrives on time."</p>
+              <strong>Emma R.</strong>
+              <div class="small text-muted">E-Commerce</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section-gradient py-5">
+      <div class="container text-center">
+        <h2 class="mb-4" style="animation:slideDown .6s ease-out;animation-fill-mode:both">Ready to Ship with Qaher?</h2>
+        <p class="lead mb-4" style="font-size:1.1rem;animation:slideUp .6s ease-out .1s both;animation-fill-mode:both">Get started today and experience the difference premium logistics can make.</p>
+        <div class="d-flex gap-2 justify-content-center flex-wrap" style="animation:slideUp .6s ease-out .2s both;animation-fill-mode:both">
+          <a href="quote.html" class="btn btn-lg btn-outline-light rounded-pill px-4"><i class="bi bi-arrow-right me-2"></i>Get Quote</a>
+          <a href="tracking.html" class="btn btn-lg btn-outline-light rounded-pill px-4"><i class="bi bi-geo-alt me-2"></i>Track</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="row gy-4 gy-md-3">
+        <div class="col-12 col-md-4 col-lg-3"><h5 style="color:#000;font-size:1.1rem">Qaher Logistics</h5><p class="small" style="color:#000">Moving Your World, Seamlessly.</p></div>
+        <div class="col-6 col-md-2"><h6 style="color:#000;font-size:0.95rem">Company</h6><ul class="list-unstyled small"><li><a href="index.html" style="color:#000">Home</a></li><li><a href="service-air.html" style="color:#000">Services</a></li><li><a href="about.html" style="color:#000">About</a></li><li><a href="contact.html" style="color:#000">Contact</a></li></ul></div>
+        <div class="col-6 col-md-2"><h6 style="color:#000;font-size:0.95rem">Services</h6><ul class="list-unstyled small"><li><a href="tracking.html" style="color:#000">Tracking</a></li><li><a href="quote.html" style="color:#000">Quote</a></li><li><a href="pricing.html" style="color:#000">Pricing</a></li><li><a href="faq.html" style="color:#000">FAQ</a></li></ul></div>
+        <div class="col-6 col-md-2"><h6 style="color:#000;font-size:0.95rem">Legal</h6><ul class="list-unstyled small"><li><a href="privacy-policy.html" style="color:#000">Privacy</a></li><li><a href="terms-and-conditions.html" style="color:#000">Terms</a></li></ul></div>
+        <div class="col-6 col-md-2 text-md-end"><small style="color:#000;display:block">© 2025 Qaher Logistics</small><small style="color:#000;opacity:0.8">All rights reserved.</small></div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="topBtn" title="Back to top" onclick="scrollToTop()"><i class="bi bi-chevron-up"></i></button>
+  <button id="liveChatBtn" title="Live chat" onclick="openChat()"><i class="bi bi-chat-dots" style="font-size:1.1rem;color:#fff"></i></button>
+
+  <div id="cookieBanner" style="display:none"><div class="flex-fill small text-muted">We use cookies to improve your experience. By continuing, you accept our Cookie Policy.</div><div class="d-flex gap-2"><button class="btn btn-sm btn-outline-light" onclick="rejectCookies()">Reject</button><button class="btn btn-sm btn-primary" onclick="acceptCookies()">Accept</button></div></div>
+
+  <div class="modal fade" id="chatModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Live Chat</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body"><p class="small text-muted">Our agents are currently offline. Leave a message and we'll get back to you within 24 hours.</p><div class="mb-2"><input class="form-control" placeholder="Your name"></div><div class="mb-2"><input class="form-control" placeholder="Your email"></div><div class="mb-2"><textarea class="form-control" rows="3" placeholder="Your message"></textarea></div></div><div class="modal-footer"><button class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button><button class="btn btn-sm btn-primary" data-bs-dismiss="modal">Send</button></div></div></div></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>

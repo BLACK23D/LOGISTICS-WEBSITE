@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Qaher Logistics - Global logistics solutions for air, sea, and land freight. Trusted by businesses worldwide.">
+  <title>Qaher Logistics Limited</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Leaflet map styles -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-sA+e2JkGk0v2bNnYwYhQqjQmYF6kG6v5gZ+3fZ9e6lw=" crossorigin=""/>
+  <style>
+    :root{
+      --bg:#0A1128; --bg2:#0F0F1E; --cyan:#00D9FF; --purple:#7B2CBF; --pink:#FF006E; --muted:#E0E0E0;
+    }
+    html,body{height:100%;background:linear-gradient(180deg,var(--bg),var(--bg2));color:#fff;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+    .glass{background:rgba(255,255,255,0.03);border:1px solid rgba(0,217,255,0.08);backdrop-filter:blur(8px);}
+    .navbar{backdrop-filter: blur(6px);background:rgba(10,17,40,0.45)!important;border-bottom:1px solid rgba(0,217,255,0.06)}
+    .nav-link{color:var(--muted)!important}
+    .nav-link:hover{color:var(--cyan)!important}
+    .hero{min-height:88vh;display:flex;align-items:center}
+    .hero h1{font-weight:700;font-size:2.6rem;line-height:1.05}
+    .cta-primary{background:linear-gradient(90deg,var(--cyan),var(--purple));border:none}
+    .service-card{transition:transform .28s ease, box-shadow .28s ease}
+    .service-card:hover{transform:translateY(-8px);box-shadow:0 10px 30px rgba(0,217,255,0.08);border-color:rgba(0,217,255,0.18)}
+    .stat{font-size:1.25rem;color:var(--cyan);font-weight:700}
+    .fade-in{opacity:0;transform:translateY(10px);transition:all .7s ease}
+    .fade-in.visible{opacity:1;transform:none}
+    .counter{font-weight:700;font-size:1.6rem}
+    /* tracking timeline */
+    .timeline{display:flex;gap:10px;align-items:center}
+    .timeline .step{flex:1;padding:10px;border-radius:10px;background:rgba(255,255,255,0.02);text-align:center}
+    .timeline .step.active{background:linear-gradient(90deg,var(--cyan),rgba(0,217,255,0.15));box-shadow:0 6px 20px rgba(0,217,255,0.06);}
+    .map-box{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));height:260px;border-radius:10px}
+    /* Leaflet map container */
+    #officeMap{height:300px;border-radius:10px;overflow:hidden}
+    /* particles */
+    #tsparticles{position:fixed;inset:0;z-index:0;pointer-events:none}
+    /* live chat */
+    #liveChatBtn{position:fixed;right:18px;bottom:86px;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--purple);color:white;z-index:999}
+    /* cookie banner */
+    #cookieBanner{position:fixed;left:16px;right:16px;bottom:18px;background:rgba(10,17,40,0.92);border:1px solid rgba(255,255,255,0.04);padding:12px;border-radius:10px;z-index:1000;display:flex;align-items:center;gap:12px}
+    /* quote table */
+    .quote-card{background:linear-gradient(180deg,rgba(0,0,0,0.2),rgba(255,255,255,0.02));padding:18px;border-radius:10px}
+    /* footer */
+    footer{background:linear-gradient(180deg,var(--bg2),#05050b);padding:40px 0}
+    /* back-to-top */
+    #topBtn{position:fixed;right:18px;bottom:18px;width:48px;height:48px;border-radius:50%;display:none;align-items:center;justify-content:center;background:var(--cyan);color:#042;z-index:999}
+    /* responsive tweaks */
+    @media(min-width:992px){.hero h1{font-size:4rem}}
+  </style>
+</head>
+<body>
+
+<!-- particle background -->
+<div id="tsparticles" aria-hidden="true"></div>
+
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand text-white d-flex align-items-center" href="#home">
+      <img src="LOGO/IMG_20251121_182909 (1).jpg" alt="Qaher Logistics Logo" style="height: 70px;">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navmenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#tracking">Tracking</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item ms-2"><a class="btn btn-sm btn-primary cta-primary" href="#quote">Get Quote</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <!-- HERO -->
+  <section id="home" class="hero py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <div class="glass p-4 rounded-4">
+            <h1 class="mb-3">Global Logistics, Delivered with Precision</h1>
+            <p class="lead text-muted" style="color:var(--muted)">Connecting businesses worldwide with speed, technology, and trust. Land • Sea • Air</p>
+            <div class="d-flex gap-2 mt-3">
+              <a href="#quote" class="btn btn-lg btn-primary cta-primary">Get a Quote</a>
+              <a href="#tracking" class="btn btn-lg btn-outline-light">Track Shipment</a>
+            </div>
+            <div class="row mt-4 text-center">
+              <div class="col-4">
+                <div class="counter" data-target="500">0+</div>
+                <div class="text-muted small">Countries Served</div>
+              </div>
+              <div class="col-4">
+                <div class="counter" data-target="10000">0+</div>
+                <div class="text-muted small">Shipments Monthly</div>
+              </div>
+              <div class="col-4">
+                <div class="counter" data-target="24">0/7</div>
+                <div class="text-muted small">Operations</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-5 mt-4 mt-lg-0">
+          <div class="glass p-4 rounded-4">
+            <h5 class="mb-3">Our Transport Modes</h5>
+            <div class="d-flex gap-3 align-items-center">
+              <div class="p-3 service-card rounded-3 text-center flex-fill">
+                <i class="bi bi-airplane-fill" style="font-size:26px;color:var(--cyan)"></i>
+                <h6 class="mt-2">Air Freight</h6>
+                <p class="small text-muted">Fast international delivery</p>
+              </div>
+              <div class="p-3 service-card rounded-3 text-center flex-fill">
+                <i class="bi bi-ship" style="font-size:26px;color:var(--cyan)"></i>
+                <h6 class="mt-2">Sea Freight</h6>
+                <p class="small text-muted">Cost-effective ocean logistics</p>
+              </div>
+              <div class="p-3 service-card rounded-3 text-center flex-fill">
+                <i class="bi bi-truck" style="font-size:26px;color:var(--cyan)"></i>
+                <h6 class="mt-2">Land Freight</h6>
+                <p class="small text-muted">Reliable ground transport</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="py-5">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Services</h2>
+        <small class="text-muted">Air • Sea • Land</small>
+      </div>
+      <div class="row g-3">
+        <div class="col-lg-4">
+          <div class="glass p-4 rounded-4 service-card fade-in">
+            <div class="d-flex align-items-center mb-2"><i class="bi bi-airplane-fill me-2" style="color:var(--cyan)"></i><h5 class="mb-0">Air Freight</h5></div>
+            <p class="text-muted small">Express delivery, door-to-door, charter services.</p>
+            <ul class="small">
+              <li>Rapid international transit</li>
+              <li>Real-time tracking</li>
+              <li>Customs clearance assistance</li>
+            </ul>
+            <a class="btn btn-sm btn-outline-light" href="#quote" onclick="prefillService('Air Freight')">Request Quote</a>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="glass p-4 rounded-4 service-card fade-in">
+            <div class="d-flex align-items-center mb-2"><i class="bi bi-ship me-2" style="color:var(--cyan)"></i><h5 class="mb-0">Sea Freight</h5></div>
+            <p class="text-muted small">FCL, LCL, port services and warehousing.</p>
+            <ul class="small">
+              <li>Full/part container options</li>
+              <li>Port-to-port & door-to-door</li>
+              <li>Secure warehousing</li>
+            </ul>
+            <a class="btn btn-sm btn-outline-light" href="#quote" onclick="prefillService('Sea Freight')">Request Quote</a>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="glass p-4 rounded-4 service-card fade-in">
+            <div class="d-flex align-items-center mb-2"><i class="bi bi-truck me-2" style="color:var(--cyan)"></i><h5 class="mb-0">Land Freight</h5></div>
+            <p class="text-muted small">Trucking, cross-border, and last-mile delivery.</p>
+            <ul class="small">
+              <li>Cross-border expertise</li>
+              <li>Temperature-controlled options</li>
+              <li>Last-mile delivery</li>
+            </ul>
+            <a class="btn btn-sm btn-outline-light" href="#quote" onclick="prefillService('Land Freight')">Request Quote</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-5 glass p-4 rounded-4">
+        <h5>Service Comparison</h5>
+        <div class="table-responsive">
+          <table class="table table-dark table-striped mt-3">
+            <thead><tr><th>Feature</th><th>Air</th><th>Sea</th><th>Land</th></tr></thead>
+            <tbody>
+              <tr><td>Speed</td><td>Fast</td><td>Slow</td><td>Medium</td></tr>
+              <tr><td>Cost</td><td>High</td><td>Low</td><td>Medium</td></tr>
+              <tr><td>Capacity</td><td>Limited</td><td>Large</td><td>Medium</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRACKING -->
+  <section id="tracking" class="py-5">
+    <div class="container">
+      <h2>Track Your Shipment</h2>
+      <p class="text-muted">Enter your tracking number to see the latest updates.</p>
+      <div class="row gy-3">
+        <div class="col-lg-6">
+          <div class="glass p-4 rounded-4">
+            <div class="input-group mb-3">
+              <input id="trackInput" type="text" class="form-control" placeholder="Enter Tracking Number (e.g., QHL-2024-12345)">
+              <button class="btn btn-outline-light" onclick="doTrack()">Track</button>
+              <button class="btn btn-link text-info" onclick="useDemo()">Use demo</button>
+            </div>
+            <div id="trackResult" style="display:none">
+              <h5>Tracking #: <span id="tn">QHL-2024-12345</span></h5>
+              <p class="small text-muted" id="lastUpdate">Status: In Transit • Last update: 2 hours ago</p>
+              <div class="timeline mb-3">
+                <div class="step" id="s1">Origin</div>
+                <div class="step" id="s2">In Transit</div>
+                <div class="step" id="s3">Customs</div>
+                <div class="step" id="s4">Delivery</div>
+              </div>
+              <div class="map-box mb-3 d-flex align-items-center justify-content-center small">Map visualization (stylized)</div>
+              <div id="detailLog" class="small text-muted">
+                <div>Nov 20, 2024 - Picked up from Shanghai</div>
+                <div>Nov 21, 2024 - Departed hub</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="glass p-4 rounded-4">
+            <h5>Need help?</h5>
+            <p class="text-muted small">If you can't find your tracking number, contact support.</p>
+            <a class="btn btn-sm btn-outline-light" href="#contact">Contact Support</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-5">
+    <div class="container">
+      <h2>About Qaher Logistics Limited</h2>
+      <p class="text-muted">Since 2010, Qaher Logistics has connected businesses across continents with a focus on reliability and innovation.</p>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="glass p-4 rounded-4 mb-3">
+            <h5>Mission</h5>
+            <p class="small text-muted">To provide world-class logistics solutions that empower businesses to reach global markets with confidence and reliability.</p>
+          </div>
+          <div class="glass p-4 rounded-4 mb-3">
+            <h5>Vision</h5>
+            <p class="small text-muted">To be the most trusted, innovative logistics partner transforming global supply chains through technology and excellence.</p>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="glass p-4 rounded-4">
+            <h5>Global Presence</h5>
+            <div id="officeMap" class="mb-3"></div>
+            <p class="small text-muted">Offices and hubs across Africa, Asia, Europe, and the Americas. Hover markers to see office details.</p>
+            <div class="row small mt-3">
+              <div class="col-6">500+ Countries</div>
+              <div class="col-6">10K+ Monthly Shipments</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-5">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <div class="row gy-3">
+        <div class="col-lg-6">
+          <div class="glass p-4 rounded-4">
+            <form id="contactForm" onsubmit="submitContact(event)">
+              <div class="mb-2"><label class="form-label small">Name</label><input class="form-control" required id="cname"></div>
+              <div class="mb-2"><label class="form-label small">Email</label><input class="form-control" type="email" required id="cemail"></div>
+              <div class="mb-2"><label class="form-label small">Phone</label><input class="form-control" id="cphone"></div>
+              <div class="mb-2"><label class="form-label small">Service Type</label><select class="form-select" id="cservice"><option>Air Freight</option><option>Sea Freight</option><option>Land Freight</option></select></div>
+              <div class="mb-2"><label class="form-label small">Message</label><textarea class="form-control" id="cmessage" required></textarea></div>
+              <button class="btn btn-primary cta-primary" type="submit">Send Message</button>
+            </form>
+            <div id="contactSuccess" style="display:none" class="mt-3 alert alert-success">Thank you! We'll respond within 24 hours.</div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="glass p-4 rounded-4">
+            <h5>Headquarters</h5>
+            <p class="small text-muted">123 Business District, Lagos, Nigeria</p>
+            <p class="small text-muted">Phone: +234 XXX XXX XXXX • Email: info@qaherlogistics.com</p>
+            <p class="small text-muted">Hours: Mon-Fri 08:00 - 18:00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section id="quote" class="py-5">
+    <div class="container">
+      <h2>Get an Instant Quote</h2>
+      <div class="row gy-3">
+        <div class="col-lg-7">
+          <div class="glass p-4 rounded-4">
+            <form id="quoteForm" onsubmit="calculateQuote(event)">
+              <div class="row">
+                <div class="col-md-6 mb-2"><label class="form-label small">Origin</label><input class="form-control" id="origin" placeholder="City, Country"></div>
+                <div class="col-md-6 mb-2"><label class="form-label small">Destination</label><input class="form-control" id="destination" placeholder="City, Country"></div>
+              </div>
+              <div class="row">
+                <div class="col-md-4 mb-2"><label class="form-label small">Cargo Type</label><select class="form-select" id="cargoType"><option>General</option><option>Electronics</option><option>Food</option><option>Hazardous</option></select></div>
+                <div class="col-md-4 mb-2"><label class="form-label small">Weight (kg)</label><input type="number" class="form-control" id="weight" value="100"></div>
+                <div class="col-md-4 mb-2"><label class="form-label small">Service</label><select class="form-select" id="serviceSel"><option>Air Freight</option><option selected>Sea Freight</option><option>Land Freight</option></select></div>
+              </div>
+              <div class="mt-3"><button class="btn btn-primary cta-primary" type="submit">Calculate Quote</button> <button class="btn btn-outline-light" type="button" onclick="resetQuote()">Clear</button></div>
+            </form>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="quote-card">
+            <h5>Estimate</h5>
+            <div id="quoteResult" class="mt-3 small text-muted">
+              <div>Service: <span id="qService">Sea Freight</span></div>
+              <div>Weight: <span id="qWeight">100</span> kg</div>
+              <div class="mt-2">Estimated Cost: <strong id="qCost">$0.00</strong></div>
+              <div class="mt-2">Estimated Delivery: <span id="qETA">7-14 days</span></div>
+              <div class="mt-3"><button class="btn btn-sm btn-outline-light" onclick="requestFullQuote()">Request Full Quote</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="row gy-3">
+      <div class="col-md-4">
+        <h5>Qaher Logistics</h5>
+        <p class="small text-muted">Moving Your World, Seamlessly.</p>
+      </div>
+      <div class="col-md-2">
+        <h6>Links</h6>
+        <ul class="list-unstyled small">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#tracking">Tracking</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6>Contact</h6>
+        <div class="small text-muted">info@qaherlogistics.com</div>
+        <div class="small text-muted">+234 XXX XXX XXXX</div>
+      </div>
+      <div class="col-md-3 text-end">
+        <small class="text-muted">© 2025 Qaher Logistics. All rights reserved.</small>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button id="topBtn" title="Back to top" onclick="scrollToTop()"><i class="bi bi-chevron-up"></i></button>
+
+<!-- Live chat button -->
+<button id="liveChatBtn" title="Live chat" onclick="openChat()"><i class="bi bi-chat-dots" style="font-size:1.1rem;color:#fff"></i></button>
+
+<!-- Chat modal (bootstrap) -->
+<div class="modal fade" id="chatModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Live Chat</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="small text-muted">Our agents are currently offline. Leave a message and we'll get back to you within 24 hours.</p>
+        <div class="mb-2"><input class="form-control" placeholder="Your name"></div>
+        <div class="mb-2"><input class="form-control" placeholder="Your email"></div>
+        <div class="mb-2"><textarea class="form-control" rows="3" placeholder="Your message"></textarea></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-sm btn-primary" data-bs-dismiss="modal">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cookie consent banner -->
+<div id="cookieBanner" style="display:none">
+  <div class="flex-fill small text-muted">We use cookies to improve your experience. By continuing, you accept our Cookie Policy.</div>
+  <div class="d-flex gap-2">
+    <button class="btn btn-sm btn-outline-light" onclick="rejectCookies()">Reject</button>
+    <button class="btn btn-sm btn-primary" onclick="acceptCookies()">Accept</button>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- tsParticles (background particles) -->
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-o9N1j8k9m7k6Gk3Qv2L3hQqjQmYF6kG6v5gZ+3fZ9e6lw=" crossorigin=""></script>
+<script>
+  // Simple counters
+  document.addEventListener('DOMContentLoaded',()=>{
+    document.querySelectorAll('.counter').forEach(el=>{
+      const target = parseInt(el.getAttribute('data-target'))||0;
+      let cur = 0; const step = Math.max(1,Math.floor(target/100));
+      const id=setInterval(()=>{ if(cur>=target){ clearInterval(id); el.textContent = target + (el.textContent.includes('+')?'+':''); } else { cur+=step; el.textContent = cur + (el===el?'+':''); } },18);
+    });
+  });
+
+  // Intersection Observer for fade-in
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, {threshold:.15});
+  document.querySelectorAll('.fade-in').forEach(el=>io.observe(el));
+
+  // Initialize tsParticles (subtle background)
+  if(window.tsParticles){
+    tsParticles.load('tsparticles', {
+      fpsLimit: 60,
+      particles: {
+        number: { value: 40, density: { enable: true, area: 800 } },
+        color: { value: '#00D9FF' },
+        shape: { type: 'circle' },
+        opacity: { value: 0.06 },
+        size: { value: { min: 1, max: 3 } },
+        move: { enable: true, speed: 0.6, direction: 'none', outModes: { default: 'out' } },
+        links: { enable: true, distance: 140, color: '#00D9FF', opacity: 0.03, width: 1 }
+      },
+      interactivity: { detectsOn: 'canvas', events: { onHover: { enable: false }, onClick: { enable: false } } },
+      detectRetina: true
+    }).catch(()=>{});
+  }
+
+  // Tracking logic (demo)
+  function doTrack(){
+    const v = document.getElementById('trackInput').value.trim();
+    if(!v){alert('Enter tracking number or use demo');return}
+    showTracking(v);
+  }
+  function useDemo(){ document.getElementById('trackInput').value='QHL-2024-12345'; showTracking('QHL-2024-12345'); }
+  function showTracking(tn){
+    document.getElementById('trackResult').style.display='block';
+    document.getElementById('tn').textContent=tn;
+    document.getElementById('lastUpdate').textContent='Status: In Transit • Last update: 2 hours ago';
+    // timeline animate
+    ['s1','s2','s3','s4'].forEach((id,i)=>{ const el=document.getElementById(id); el.classList.remove('active'); setTimeout(()=>{ el.classList.add('active'); }, i*500); });
+  }
+
+  // Contact form
+  function submitContact(e){ e.preventDefault(); document.getElementById('contactForm').reset(); document.getElementById('contactSuccess').style.display='block'; setTimeout(()=>document.getElementById('contactSuccess').style.display='none',5000); }
+
+  // Quote calculate
+  function calculateQuote(e){ e.preventDefault(); const weight = Number(document.getElementById('weight').value)||0; const service = document.getElementById('serviceSel').value; const base={"Air Freight":12,"Sea Freight":3,"Land Freight":5}; const cost = (base[service]||5) * weight + 150; document.getElementById('qService').textContent=service; document.getElementById('qWeight').textContent=weight; document.getElementById('qCost').textContent = '$' + cost.toLocaleString(); let eta=''; if(service==='Air Freight') eta='2-4 days'; if(service==='Sea Freight') eta='14-30 days'; if(service==='Land Freight') eta='3-10 days'; document.getElementById('qETA').textContent=eta; }
+  function resetQuote(){ document.getElementById('quoteForm').reset(); document.getElementById('qCost').textContent='$0.00'; }
+  function requestFullQuote(){ alert('Quote request sent. Our sales team will contact you.'); }
+
+  // prefill service on link click
+  function prefillService(name){ document.getElementById('serviceSel').value=name; document.location.hash='quote'; window.scrollTo({top:document.querySelector('#quote').offsetTop-70,behavior:'smooth'}); }
+
+  // back to top
+  function scrollToTop(){ window.scrollTo({top:0,behavior:'smooth'}); }
+  window.addEventListener('scroll',()=>{ const b = document.getElementById('topBtn'); if(window.scrollY>300) b.style.display='flex'; else b.style.display='none'; });
+
+  // small accessibility: enable anchor nav smooth
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{ a.addEventListener('click', (ev)=>{ ev.preventDefault(); const id = a.getAttribute('href').slice(1); const el = document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }); });
+
+  // Leaflet map init for officeMap
+  function initOfficeMap(){ try{
+    if(!window.L) return;
+    const map = L.map('officeMap', {scrollWheelZoom:false}).setView([6.5244,3.3792],2);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; OpenStreetMap contributors'}).addTo(map);
+    const offices = [
+      {name:'Lagos (HQ)', coords:[6.5244,3.3792], info:'HQ: Lagos, Nigeria'},
+      {name:'Shanghai', coords:[31.2304,121.4737], info:'Shanghai Hub'},
+      {name:'Dubai', coords:[25.2048,55.2708], info:'Dubai Office'},
+      {name:'Nairobi', coords:[-1.286389,36.817223], info:'Nairobi Office'},
+      {name:'São Paulo', coords:[-23.55052,-46.633308], info:'São Paulo Office'}
+    ];
+    offices.forEach(o=>{ const m = L.circleMarker(o.coords,{radius:7,color:'#00D9FF',fillColor:'#00D9FF',fillOpacity:0.9}).addTo(map); m.bindPopup(`<strong>${o.name}</strong><br>${o.info}`); });
+  }catch(e){console.warn('Leaflet init failure',e);} }
+  window.addEventListener('load', ()=>{ initOfficeMap();
+    // cookie banner show logic
+    const cb = localStorage.getItem('qaher_cookie_consent');
+    const banner = document.getElementById('cookieBanner');
+    if(!cb && banner) banner.style.display='flex';
+  });
+
+  // cookie consent
+  function acceptCookies(){ localStorage.setItem('qaher_cookie_consent','accepted'); const b=document.getElementById('cookieBanner'); if(b) b.style.display='none'; }
+  function rejectCookies(){ localStorage.setItem('qaher_cookie_consent','rejected'); const b=document.getElementById('cookieBanner'); if(b) b.style.display='none'; }
+
+  // Live chat modal
+  let _chatModal;
+  document.addEventListener('DOMContentLoaded',()=>{ const el = document.getElementById('chatModal'); if(el) _chatModal = new bootstrap.Modal(el); });
+  function openChat(){ if(_chatModal) _chatModal.show(); else alert('Chat is currently unavailable. Please leave a message via Contact.'); }
+</script>
+</body>
+</html>
